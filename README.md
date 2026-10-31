@@ -4,6 +4,7 @@ A collection of mathematical and physical derivations relevant to radio astronom
 
 **Author:** [Maxwell A. Fine](https://afinemax.github.io/afinemax1/) |PhD Student, Physics & Astrophysics | McGill University
 
+The PDF version can be downloaded [here](https://github.com/afinemax/Physics_and_Mathematics_A_Derivation_Handbook/blob/main/Physics_and_Mathematics_A_Derivation_Handbook.pdf)
 
 ## About
 
