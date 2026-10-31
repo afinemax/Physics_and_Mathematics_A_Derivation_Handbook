@@ -2,10 +2,8 @@
 
 A collection of mathematical and physical derivations relevant to radio astronomy, astrophysics, and signal propagation.
 
-**Author:** Maxwell A. Fine |PhD Student, Physics & Astrophysics | McGill University
+**Author:** [Maxwell A. Fine](https://afinemax.github.io/afinemax1/) |PhD Student, Physics & Astrophysics | McGill University
 
-[Personal Website](https://afinemax.github.io/afinemax1/)
-**Format:** LaTeX / Overleaf
 
 ## About
 
