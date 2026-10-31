@@ -1,0 +1,401 @@
+
+\section{The Pulse Broadening Function}
+\label{sec:pulse_broadening_function}
+
+Radio waves propagating through an inhomogeneous plasma can
+follow multiple paths between a source and an observer.
+Because these paths have different geometric lengths, photons
+emitted simultaneously can arrive at different times.
+The resulting distribution of arrival-time delays is
+described by the \textbf{pulse broadening function} (PBF).
+
+If the intrinsic pulse profile is $I_{\rm int}(t)$,
+the observed profile is approximately the convolution
+
+\begin{equation}
+\boxed{
+I_{\rm obs}(t)
+=
+\int_{-\infty}^{\infty}
+I_{\rm int}(t')\,\mathrm{PBF}(t-t')\,dt'.
+}
+\end{equation}
+
+We will derive the PBF for an idealized thin scattering
+screen with an isotropic Gaussian distribution of
+scattering angles.
+
+\subsection{Geometric Time Delays}
+
+Consider a source at distance $D$ from the observer,
+with a thin scattering screen located a distance $D_s$
+from the observer.
+
+As derived previously, a ray arriving at an angle
+$\theta$ relative to the direct line of sight
+has an additional geometric path length
+
+\begin{equation}
+\Delta L
+\simeq
+\frac{D_sD}{2(D-D_s)}\theta^2.
+\end{equation}
+
+The corresponding time delay is
+
+\begin{equation}
+t=\frac{\Delta L}{c}.
+\end{equation}
+
+Defining the geometric factor
+
+\begin{equation}
+A\equiv
+\frac{D_sD}{2c(D-D_s)},
+\end{equation}
+
+we can write
+
+\begin{equation}
+\boxed{t=A\theta^2.}
+\end{equation}
+
+This is the essential relationship: the geometric
+delay is proportional to the square of the angular
+offset.
+
+Since $\theta^2\geq 0$, geometric scattering delays
+are always non-negative relative to the direct path.
+
+\subsection{The Angular Distribution of Scattered Rays}
+
+Assume that the angular deflections in two transverse
+directions, $\theta_x$ and $\theta_y$, are independent
+Gaussian random variables with zero mean and equal
+variance $\sigma_\theta^2$:
+
+\begin{equation}
+p(\theta_x,\theta_y)
+=
+\frac{1}{2\pi\sigma_\theta^2}
+\exp\left[
+-\frac{\theta_x^2+\theta_y^2}
+{2\sigma_\theta^2}
+\right].
+\end{equation}
+
+The total angular offset is
+
+\begin{equation}
+\theta^2=\theta_x^2+\theta_y^2.
+\end{equation}
+
+Because the distribution is isotropic, it is convenient
+to transform into polar coordinates:
+
+\begin{equation}
+d\theta_x\,d\theta_y
+=
+\theta\,d\theta\,d\varphi.
+\end{equation}
+
+Integrating over the azimuthal angle $\varphi$,
+
+\begin{align}
+p_\theta(\theta)\,d\theta
+&=
+\int_0^{2\pi}
+p(\theta_x,\theta_y)\,
+\theta\,d\varphi\,d\theta\\
+&=
+\frac{\theta}{\sigma_\theta^2}
+\exp\left(
+-\frac{\theta^2}{2\sigma_\theta^2}
+\right)d\theta.
+\end{align}
+
+Thus the probability density for the magnitude
+of the angular offset is
+
+\begin{equation}
+\boxed{
+p_\theta(\theta)
+=
+\frac{\theta}{\sigma_\theta^2}
+\exp\left(
+-\frac{\theta^2}{2\sigma_\theta^2}
+\right),
+\qquad \theta\geq0.
+}
+\end{equation}
+
+This is a Rayleigh distribution.
+
+\subsection{Converting Angular Deflections into Time Delays}
+
+We now transform the angular probability distribution
+into a distribution of arrival times.
+
+Recall that
+
+\begin{equation}
+t=A\theta^2.
+\end{equation}
+
+Solving for $\theta$,
+
+\begin{equation}
+\theta=\sqrt{\frac{t}{A}}.
+\end{equation}
+
+Differentiating,
+
+\begin{equation}
+\frac{d\theta}{dt}
+=
+\frac{1}{2A\theta}.
+\end{equation}
+
+Conservation of probability requires
+
+\begin{equation}
+p_t(t)\,dt=p_\theta(\theta)\,d\theta.
+\end{equation}
+
+Therefore,
+
+\begin{equation}
+p_t(t)
+=
+p_\theta(\theta)
+\left|\frac{d\theta}{dt}\right|.
+\end{equation}
+
+Substituting the angular distribution,
+
+\begin{align}
+p_t(t)
+&=
+\frac{\theta}{\sigma_\theta^2}
+\exp\left(
+-\frac{\theta^2}{2\sigma_\theta^2}
+\right)
+\frac{1}{2A\theta}\\
+&=
+\frac{1}{2A\sigma_\theta^2}
+\exp\left(
+-\frac{t}{2A\sigma_\theta^2}
+\right).
+\end{align}
+
+Define the characteristic scattering timescale
+
+\begin{equation}
+\boxed{
+\tau_{\rm scatt}
+\equiv 2A\sigma_\theta^2.
+}
+\end{equation}
+
+Using our expression for $A$,
+
+\begin{equation}
+\boxed{
+\tau_{\rm scatt}
+=
+\frac{D_sD}{c(D-D_s)}
+\sigma_\theta^2.
+}
+\end{equation}
+
+The probability distribution of arrival times becomes
+
+\begin{equation}
+\boxed{
+p_t(t)
+=
+\frac{1}{\tau_{\rm scatt}}
+\exp\left(-\frac{t}{\tau_{\rm scatt}}\right),
+\qquad t\geq0.
+}
+\end{equation}
+
+For negative delays, the probability is zero.
+We express this using the Heaviside step function,
+
+\begin{equation}
+H(t)=
+\begin{cases}
+0,&t<0,\\
+1,&t\geq0.
+\end{cases}
+\end{equation}
+
+Our final pulse broadening function is therefore
+
+\begin{equation}
+\boxed{
+\mathrm{PBF}(t)
+=
+\frac{1}{\tau_{\rm scatt}}
+e^{-t/\tau_{\rm scatt}}H(t).
+}
+\end{equation}
+
+The normalization can be verified directly:
+
+\begin{equation}
+\int_{-\infty}^{\infty}
+\mathrm{PBF}(t)\,dt
+=
+\int_0^\infty
+\frac{1}{\tau_{\rm scatt}}
+e^{-t/\tau_{\rm scatt}}dt
+=1.
+\end{equation}
+
+\subsection{Why Scattered Pulses Have Exponential Tails}
+
+Suppose the source emits an infinitely narrow pulse,
+
+\begin{equation}
+I_{\rm int}(t)=F\,\delta(t),
+\end{equation}
+
+where $F$ is the pulse fluence.
+
+Convolving this with the PBF gives
+
+\begin{align}
+I_{\rm obs}(t)
+&=
+F\int_{-\infty}^{\infty}
+\delta(t')\,\mathrm{PBF}(t-t')\,dt'\\
+&=F\,\mathrm{PBF}(t).
+\end{align}
+
+Thus,
+
+\begin{equation}
+\boxed{
+I_{\rm obs}(t)
+=
+\frac{F}{\tau_{\rm scatt}}
+e^{-t/\tau_{\rm scatt}}H(t).
+}
+\end{equation}
+
+An intrinsically instantaneous pulse is observed as
+a one-sided exponential tail.
+
+For a pulse with finite intrinsic width, the observed
+profile is the convolution of the intrinsic emission
+and this exponential response.
+
+For example, if the intrinsic pulse is Gaussian,
+
+\begin{equation}
+I_{\rm int}(t)
+=
+\frac{F}{\sqrt{2\pi}\sigma}
+\exp\left[
+-\frac{(t-t_0)^2}{2\sigma^2}
+\right],
+\end{equation}
+
+then convolution with the exponential PBF gives
+
+\begin{equation}
+\boxed{
+\begin{aligned}
+I_{\rm obs}(t)
+={}&
+\frac{F}{2\tau_{\rm scatt}}
+\exp\left[
+\frac{\sigma^2}{2\tau_{\rm scatt}^2}
+-\frac{t-t_0}{\tau_{\rm scatt}}
+\right]\\
+&\times
+\operatorname{erfc}\left[
+\frac{1}{\sqrt{2}}
+\left(
+\frac{\sigma}{\tau_{\rm scatt}}
+-\frac{t-t_0}{\sigma}
+\right)
+\right].
+\end{aligned}
+}
+\end{equation}
+
+Here $\operatorname{erfc}$ is the complementary
+error function.
+
+This is the familiar exponentially modified Gaussian
+pulse profile, commonly used to model temporally
+scattered radio bursts.
+
+\subsection{Frequency Dependence}
+
+The characteristic scattering timescale depends on
+the angular distribution of the scattered radiation.
+
+Since
+
+\begin{equation}
+\tau_{\rm scatt}\propto\sigma_\theta^2,
+\end{equation}
+
+the frequency dependence of the PBF timescale follows
+from the frequency dependence of the scattering angle.
+
+For an ideal Kolmogorov turbulent plasma in the
+strong-scattering regime,
+
+\begin{equation}
+\sigma_\theta\propto\nu^{-11/5},
+\end{equation}
+
+and therefore
+
+\begin{equation}
+\boxed{
+\tau_{\rm scatt}\propto\nu^{-22/5}
+=\nu^{-4.4}.
+}
+\end{equation}
+
+In practice, scattering timescales are often
+parameterized relative to a reference frequency
+$\nu_0$:
+
+\begin{equation}
+\boxed{
+\tau_{\rm scatt}(\nu)
+=
+\tau_0
+\left(\frac{\nu}{\nu_0}\right)^\alpha.
+}
+\end{equation}
+
+The scattering index $\alpha$ can then be measured
+from observations across multiple frequency bands.
+
+\subsection{Limitations of the Exponential PBF}
+
+The one-sided exponential PBF derived here relies on
+an isotropic Gaussian distribution of scattering angles
+and an idealized thin-screen geometry.
+
+A real turbulent plasma does not necessarily produce
+an exactly Gaussian angular distribution. In particular,
+an ideal Kolmogorov phase structure function is not
+quadratic, so its angular scattering distribution and
+corresponding PBF are generally not exactly exponential.
+
+Anisotropic scattering, multiple scattering screens,
+finite screen sizes, and distributed scattering media
+can also produce different pulse broadening functions.
+
+Consequently, an exponential PBF is a useful model,
+but it is not a universal description of radio-wave
+scattering.

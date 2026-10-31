@@ -1,0 +1,50 @@
+
+
+\section{Maxwell's Equations}\label{sec:maxwell_equations}
+
+Maxwell's equations in SI units are
+
+\begin{subequations}\label{eq:maxwell_equations}
+\begin{align}
+\nabla\cdot\mathbf E &= \frac{\rho}{\epsilon_0},
+&& \text{(Gauss's law for electricity)}
+\label{eq:gauss_electric}\\
+\nabla\cdot\mathbf B &= 0,
+&& \text{(Gauss's law for magnetism)}
+\label{eq:gauss_magnetic}\\
+\nabla\times\mathbf E &= -\pdv{\mathbf B}{t},
+&& \text{(Faraday's law of induction)}
+\label{eq:faraday}\\
+\nabla\times\mathbf B &= \mu_0\mathbf J
++ \mu_0\epsilon_0\pdv{\mathbf E}{t},
+&& \text{(Ampère--Maxwell law)}
+\label{eq:ampere_maxwell}
+\end{align}
+\end{subequations}
+
+where $\mathbf E$ is the electric field,
+$\mathbf B$ is the magnetic field,
+$\rho$ is the electric charge density,
+$\mathbf J$ is the electric current density,
+$\epsilon_0$ is the vacuum permittivity,
+and $\mu_0$ is the vacuum permeability.
+
+Another useful equation to remember is the
+\textbf{continuity equation}, which expresses
+the local conservation of electric charge:
+\begin{equation}
+\boxed{
+\pdv{\rho}{t} + \nabla\cdot\mathbf J = 0
+}
+\label{eq:continuity}
+\end{equation}
+where $\rho$ is the electric charge density
+and $\mathbf J$ is the electric current density,
+defined as
+\begin{equation}
+\mathbf J = \rho\mathbf v,
+\label{eq:current_density}
+\end{equation}
+where $\mathbf v$ is the velocity of the moving
+charge distribution. The SI units of $\mathbf J$
+are $\mathrm{A\,m^{-2}}$.

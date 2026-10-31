@@ -1,0 +1,402 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,physics,bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\newcommand{\epsz}{\epsilon_0}
+\newcommand{\muz}{\mu_0}
+\begin{document}
+\section{Dispersion}\label{sec:em_fundementals_dispersion}
+\textbf{Dispersion} is the phenomenon in which waves of different frequencies propagate at different speeds. More precisely, the relation between angular frequency $\omega$ and wavenumber $k$ is called the \emph{dispersion relation}, $\omega=\omega(k)$. A wave packet propagates at the group velocity $v_g=\dv{\omega}{k}$, while individual phase fronts move at $v_\mathrm{ph}=\omega/k$.
+
+\subsection{Dispersion in free space}
+In vacuum, where there are no charges or currents, Maxwell's equations give
+\begin{align}
+\nabla\cdot\mathbf E&=0,&\nabla\cdot\mathbf B&=0,\\
+\nabla\times\mathbf E&=-\pdv{\mathbf B}{t},&
+\nabla\times\mathbf B&=\muz\epsz\pdv{\mathbf E}{t}.
+\end{align}
+Take the curl of Faraday's law:
+\begin{equation}
+\nabla\times(\nabla\times\mathbf E)=-\pdv{}{t}(\nabla\times\mathbf B).
+\end{equation}
+Using $\nabla\times(\nabla\times\mathbf E)=\nabla(\nabla\cdot\mathbf E)-\nabla^2\mathbf E$, and substituting Amp\`ere--Maxwell's law, we obtain
+\begin{equation}
+\boxed{\nabla^2\mathbf E=\muz\epsz\pdv[2]{\mathbf E}{t}.}
+\end{equation}
+Try a plane wave $\mathbf E=\mathbf E_0 e^{i(\mathbf k\cdot\mathbf r-\omega t)}$. Then $\nabla^2\mathbf E=-k^2\mathbf E$ and $\partial_t^2\mathbf E=-\omega^2\mathbf E$, so
+\begin{equation}
+k^2=\muz\epsz\omega^2,\qquad
+\boxed{\omega=ck},\qquad c=\frac{1}{\sqrt{\muz\epsz}}.
+\end{equation}
+Therefore
+\begin{equation}
+\boxed{v_\mathrm{ph}=\frac{\omega}{k}=c,\qquad v_g=\dv{\omega}{k}=c.}
+\end{equation}
+All frequencies propagate at the same speed: vacuum is nondispersive.
+
+
+\subsection{The plasma frequency: physical intuition}
+
+Imagine a uniform slab of plasma, with electron number density $n_e$
+and stationary positive ions. Displace the electron fluid a small
+distance $x$ to the right relative to the ions. The slab remains
+neutral in its interior, but thin layers of opposite surface charge
+appear at its edges, with magnitudes $\sigma_s=n_e e x$
+(charge per unit area).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1.0]
+
+% Original ion slab
+\fill[red!7] (0,0) rectangle (6,2.6);
+\draw[red!60!black,thick] (0,0) rectangle (6,2.6);
+
+% Displaced electron slab
+\fill[blue!12,opacity=0.65] (0.65,0) rectangle (6.65,2.6);
+\draw[blue!70!black,thick,dashed]
+    (0.65,0) rectangle (6.65,2.6);
+
+% Positive ions
+\foreach \xx in {0.3,1.1,...,5.9} {
+  \foreach \yy in {0.35,1.05,1.75,2.35} {
+    \node[red!75!black,font=\small] at (\xx,\yy) {$+$};
+  }
+}
+
+% Electrons
+\foreach \xx in {0.95,1.75,...,6.55} {
+  \foreach \yy in {0.55,1.25,1.95,2.45} {
+    \node[blue!80!black,font=\small] at (\xx,\yy) {$-$};
+  }
+}
+
+% Surface charge regions
+\fill[red!25,opacity=0.6] (0,0) rectangle (0.65,2.6);
+\fill[blue!25,opacity=0.6] (6,0) rectangle (6.65,2.6);
+
+% Sheet labels
+\node[red!70!black,above] at (0.32,2.7)
+    {$+\sigma_s$};
+\node[blue!70!black,above] at (6.32,2.7)
+    {$-\sigma_s$};
+
+% Displacement arrow
+\draw[->,very thick,blue!70!black]
+    (2.7,3.3) -- (3.35,3.3)
+    node[midway,above] {$x$};
+
+\node[blue!70!black] at (4.5,3.35)
+    {Electron displacement};
+
+% Electric field
+\draw[->,very thick,orange!90!black]
+    (2.0,-0.45) -- (4.0,-0.45)
+    node[midway,below] {$\mathbf E$};
+
+% Restoring force
+\draw[->,very thick,green!50!black]
+    (4.8,-0.45) -- (4.0,-0.45)
+    node[midway,below] {$\mathbf F=-e\mathbf E$};
+
+\node[red!70!black,below] at (0.5,-1.05)
+    {Stationary ions};
+\node[blue!70!black,below] at (5.8,-1.05)
+    {Displaced electrons};
+
+\end{tikzpicture}
+\caption{A displacement of the electron fluid relative to the
+stationary ions produces oppositely charged surface layers.
+The resulting electric field points from the positive sheet
+toward the negative sheet, exerting a restoring force on
+the electrons. The displacement is exaggerated for clarity.}
+\label{fig:plasma_oscillation}
+\end{figure}
+
+By Gauss's law, $\nabla\cdot\mathbf E=\rho/\epsz$.
+Equivalently, a Gaussian pillbox across a charged sheet gives
+$\Delta E_\perp=\sigma_s/\epsz$.
+Combining the fields of the two oppositely charged sheets gives
+an electric field inside the slab of magnitude
+\begin{equation}
+E=\frac{\sigma_s}{\epsz}
+=\frac{n_e e x}{\epsz}.
+\end{equation}
+
+For a positive displacement $x$, the field points to the right,
+so the force $-eE$ on an electron points to the left:
+it is a restoring force. Newton's law becomes
+\begin{equation}
+m_e\dv[2]{x}{t}
+=-eE
+=-\frac{n_e e^2}{\epsz}x.
+\end{equation}
+
+Thus
+\begin{equation}
+\boxed{
+\dv[2]{x}{t}+\omega_p^2x=0,
+\qquad
+\omega_p^2=\frac{n_e e^2}{\epsz m_e}.
+}
+\end{equation}
+
+The plasma frequency is the natural oscillation frequency of
+this collective restoring motion.
+
+\paragraph{Electron oscillation versus thermal motion.}
+
+The electron fluid oscillates harmonically:
+\begin{equation}
+x(t)=x_0\cos(\omega_p t).
+\end{equation}
+Its maximum coherent oscillation velocity is therefore
+\begin{equation}
+\boxed{v_{\rm osc}=\omega_p x_0.}
+\end{equation}
+
+By the equipartition theorem, each quadratic degree of freedom
+contributes $\frac{1}{2}k_B T_e$ to the average kinetic energy.
+For one-dimensional thermal motion,
+\begin{equation}
+\boxed{
+\frac{1}{2}m_e\langle v_x^2\rangle
+=\frac{1}{2}k_B T_e
+\quad\Longrightarrow\quad
+v_{\rm th}=\sqrt{\frac{k_B T_e}{m_e}}.
+}
+\end{equation}
+
+
+For example, at $T_e=10^4\,\mathrm{K}$,
+\begin{equation}
+v_{\rm th}\simeq 3.9\times10^5\,
+\mathrm{m\,s^{-1}}
+\simeq 390\,\mathrm{km\,s^{-1}}.
+\end{equation}
+
+The relative importance of the two velocities is
+\begin{equation}
+\boxed{
+\frac{v_{\rm osc}}{v_{\rm th}}
+=
+\frac{\omega_p x_0}{\sqrt{k_B T_e/m_e}}.
+}
+\end{equation}
+
+Unlike the thermal velocity, the oscillation velocity depends
+on the amplitude of the disturbance. For sufficiently small
+perturbations, $v_{\rm osc}$ can be much smaller than
+$v_{\rm th}$.
+
+Importantly, the \textbf{cold-plasma approximation does not
+require $v_{\rm osc}>v_{\rm th}$}. Rather, it assumes that
+thermal pressure and velocity-spread effects are negligible
+in the wave dynamics.
+
+For longitudinal waves, this typically requires
+$k v_{\rm th}\ll\omega$, so that electrons do not move
+appreciably across a wavelength during one oscillation.
+For transverse electromagnetic waves, thermal corrections
+to the usual cold, unmagnetized plasma dispersion relation
+are likewise negligible in the appropriate long-wavelength,
+nonrelativistic regime.
+
+Thus, a plasma may have substantial electron thermal
+motion and still be accurately described by the
+cold-plasma approximation.
+
+
+\subsection{Dispersion in cold plasma}
+Now consider a \emph{collisionless, unmagnetized, cold plasma}: a neutral equilibrium with electron density $n_e$, stationary ions, and negligible electron thermal pressure. ``Cold'' means we neglect thermal motions in the linearized electron momentum equation; it does not mean the electrons are at absolute zero. Let $e>0$ be the magnitude of the electron charge, and $m_e$ its mass.
+
+\paragraph{Step 1: Electron response to an electric field.}
+We look for a single-frequency wave, so we write $\mathbf E\propto e^{-i\omega t}$. Why? In a linear, time-independent medium, sinusoidal Fourier components evolve independently; complex exponentials make time differentiation especially simple: $\partial_t\to-i\omega$. We take the real part at the end. This is an ansatz for a monochromatic component, not an assumption that every physical pulse has only one frequency.
+
+For small-amplitude waves, the electron velocity $\mathbf v$ obeys
+\begin{equation}
+m_e\pdv{\mathbf v}{t}=-e\mathbf E.
+\end{equation}
+The magnetic Lorentz force $-e\mathbf v\times\mathbf B$ is second order in wave amplitude because both $\mathbf v$ and the wave magnetic field are first-order perturbations. For harmonic fields proportional to $e^{-i\omega t}$,
+\begin{equation}
+-i\omega m_e\mathbf v=-e\mathbf E
+\quad\Longrightarrow\quad
+\boxed{\mathbf v=-i\frac{e}{m_e\omega}\mathbf E.}
+\end{equation}
+Recall that $\mathbf J$ is the \textbf{electric current per unit area}, with SI units $\mathrm{A\,m^{-2}}$. For electrons with charge $-e$, number density $n_e$, and velocity $\mathbf v$, the current density is $\boxed{\mathbf J=-n_e e\mathbf v}$. Hence
+\begin{equation}
+\boxed{\mathbf J=i\frac{n_e e^2}{m_e\omega}\mathbf E.}
+\end{equation}
+Unlike an ordinary Ohmic conductor, the collisionless plasma has a frequency-dependent, imaginary effective conductivity.
+
+\paragraph{Step 2: Derive the wave equation.}
+Use Maxwell's equations with vacuum $\epsz,\muz$ and the plasma current:
+\begin{align}
+\nabla\times\mathbf E&=-\pdv{\mathbf B}{t},\\
+\nabla\times\mathbf B&=\muz\mathbf J+\muz\epsz\pdv{\mathbf E}{t}.
+\end{align}
+For a transverse plane wave ($\mathbf k\cdot\mathbf E=0$), curl Faraday's law and substitute Amp\`ere's law:
+\begin{equation}
+\nabla^2\mathbf E=\muz\pdv{\mathbf J}{t}+\muz\epsz\pdv[2]{\mathbf E}{t}.
+\end{equation}
+Using the harmonic current above,
+\begin{equation}
+\pdv{\mathbf J}{t}=(-i\omega)\left(i\frac{n_e e^2}{m_e\omega}\mathbf E\right)
+=\frac{n_e e^2}{m_e}\mathbf E.
+\end{equation}
+Therefore
+\begin{equation}
+\boxed{\nabla^2\mathbf E=\frac{1}{c^2}\pdv[2]{\mathbf E}{t}+\muz\frac{n_e e^2}{m_e}\mathbf E.}
+\end{equation}
+Substituting $\mathbf E=\mathbf E_0e^{i(kz-\omega t)}$ gives
+\begin{equation}
+-k^2=-\frac{\omega^2}{c^2}+\muz\frac{n_e e^2}{m_e}.
+\end{equation}
+Multiply by $c^2=1/(\muz\epsz)$, and recognize $\omega_p^2=n_e e^2/(\epsz m_e)$ from the preceding section:
+\begin{equation}
+\boxed{\omega^2=c^2k^2+\omega_p^2},\qquad
+\boxed{\omega_p\equiv\sqrt{\frac{n_e e^2}{\epsz m_e}}}.
+\end{equation}
+Here $\omega_p$ is the electron plasma frequency derived above. Its ordinary-frequency form is $\nu_p=\omega_p/(2\pi)$.
+
+
+\paragraph{Step 3: Index of refraction, phase and group velocities.}
+
+The \textbf{index of refraction} $n$ is defined as the ratio of the speed of light in vacuum to the phase velocity of a wave in a medium:
+\begin{equation}
+\boxed{n\equiv\frac{c}{v_\mathrm{ph}}=\frac{ck}{\omega}.}
+\end{equation}
+Using the plasma dispersion relation $\omega^2=c^2k^2+\omega_p^2$, we obtain
+\begin{equation}
+\boxed{n=\sqrt{1-\frac{\omega_p^2}{\omega^2}}.}
+\end{equation}
+Unlike most ordinary materials, a cold plasma has $n<1$ for propagating electromagnetic waves.
+
+From $k=\sqrt{\omega^2-\omega_p^2}/c$, the phase velocity is
+\begin{equation}
+\boxed{v_\mathrm{ph}=\frac{\omega}{k}
+=\frac{c}{n}
+=\frac{c}{\sqrt{1-\omega_p^2/\omega^2}}.}
+\end{equation}
+Differentiate $\omega=\sqrt{c^2k^2+\omega_p^2}$ to obtain the group velocity:
+\begin{equation}
+\boxed{v_g=\dv{\omega}{k}=\frac{c^2k}{\omega}
+=cn=c\sqrt{1-\frac{\omega_p^2}{\omega^2}}.}
+\end{equation}
+Thus $v_\mathrm{ph}v_g=c^2$. Phase velocity can exceed $c$, but the group velocity of propagating waves is less than $c$. For $\omega<\omega_p$, $k$ is imaginary and transverse electromagnetic waves are evanescent rather than freely propagating, leading to reflection at a plasma boundary.
+
+
+\textbf{Plasma reflection.}
+Recall the cold-plasma dispersion relation,
+\begin{equation}
+\omega^2=c^2k^2+\omega_p^2.
+\end{equation}
+When $\omega<\omega_p$, the wavenumber $k$ becomes imaginary.
+Electromagnetic waves can no longer propagate freely through the plasma;
+instead, they become evanescent and are reflected at the plasma boundary
+(in the ideal lossless case).
+
+This is why the Earth's ionosphere can reflect radio waves back toward
+the ground, particularly at frequencies below roughly $10\,\mathrm{MHz}$
+
+
+\subsection{Dispersion measure}
+A radio pulse contains many frequencies. In a dilute plasma, lower frequencies travel more slowly because $v_g$ depends on $\omega$. Suppose $\omega\gg\omega_p$ everywhere along the path. Expand $\sqrt{1-x}\simeq1-x/2$ for $x\ll1$:
+\begin{equation}
+v_g=c\sqrt{1-\frac{\omega_p^2}{\omega^2}}
+\simeq c\left(1-\frac{\omega_p^2}{2\omega^2}\right).
+\end{equation}
+\textbf{Important:} We need the \emph{reciprocal} of the group velocity to calculate travel time, not the group velocity itself. Using $1/(1-a)\simeq1+a$ for $|a|\ll1$, the sign changes:
+\begin{equation}
+\frac{1}{v_g}=\frac{1}{c}\left(1-\frac{\omega_p^2}{\omega^2}\right)^{-1/2}
+\simeq\frac{1}{c}\left(1+\frac{\omega_p^2}{2\omega^2}\right).
+\end{equation}
+For an element of path length $d\ell$, the extra travel time relative to vacuum is
+\begin{equation}
+dt_\mathrm{extra}=\left(\frac{1}{v_g}-\frac{1}{c}\right)d\ell
+\simeq\frac{\omega_p^2}{2c\omega^2}\,d\ell.
+\end{equation}
+Substitute $\omega_p^2=n_e e^2/(\epsz m_e)$ and $\omega=2\pi\nu$:
+\begin{equation}
+\boxed{\Delta t(\nu)=\frac{e^2}{8\pi^2\epsz m_e c\nu^2}\int n_e(\ell)\,d\ell.}
+\end{equation}
+Define the \textbf{dispersion measure} (DM) as the electron column density along the line of sight:
+\begin{equation}
+\boxed{\mathrm{DM}\equiv\int_0^D n_e(\ell)\,d\ell.}
+\end{equation}
+Then
+\begin{equation}
+\boxed{\Delta t(\nu)=\frac{e^2}{8\pi^2\epsz m_e c}\frac{\mathrm{DM}}{\nu^2}.}
+\end{equation}
+For two observing frequencies $\nu_\mathrm{low}<\nu_\mathrm{high}$,
+\begin{equation}
+\boxed{t(\nu_\mathrm{low})-t(\nu_\mathrm{high})
+=K_\mathrm{DM}\,\mathrm{DM}\left(\nu_\mathrm{low}^{-2}-\nu_\mathrm{high}^{-2}\right).}
+\end{equation}
+A convenient radio-astronomy convention is
+\begin{equation}
+\boxed{\Delta t\,[\mathrm{ms}]\simeq4.1488\,\mathrm{DM}\,[\mathrm{pc\,cm^{-3}}]
+\left[\left(\frac{\nu_\mathrm{low}}{\mathrm{GHz}}\right)^{-2}
+-\left(\frac{\nu_\mathrm{high}}{\mathrm{GHz}}\right)^{-2}\right].}
+\end{equation}
+This is the familiar $\nu^{-2}$ dispersive sweep seen in pulsars and fast radio bursts. The derivation assumes a cold, weakly dispersive, unmagnetized plasma and neglects cosmological redshift; for cosmological sources, the observed contribution of a plasma element at redshift $z$ is weighted by $1/(1+z)$ when written in terms of its proper electron column.
+
+
+
+For an element of path length $d\ell$, the extra travel time relative to vacuum is
+\begin{equation}
+dt_\mathrm{extra}=\left(\frac{1}{v_g}-\frac{1}{c}\right)d\ell
+\simeq\frac{\omega_p^2}{2c\omega^2}\,d\ell.
+\end{equation}
+Substitute $\omega_p^2=n_e e^2/(\epsz m_e)$ and $\omega=2\pi\nu$:
+\begin{equation}
+\boxed{\Delta t(\nu)=\frac{e^2}{8\pi^2\epsz m_e c\nu^2}\int n_e(\ell)\,d\ell.}
+\end{equation}
+Define the \textbf{dispersion measure} (DM) as the electron column density along the line of sight:
+\begin{equation}
+\boxed{\mathrm{DM}\equiv\int_0^D n_e(\ell)\,d\ell.}
+\end{equation}
+Then
+\begin{equation}
+\boxed{\Delta t(\nu)=\frac{e^2}{8\pi^2\epsz m_e c}\frac{\mathrm{DM}}{\nu^2}.}
+\end{equation}
+For two observing frequencies $\nu_\mathrm{low}<\nu_\mathrm{high}$,
+\begin{equation}
+\boxed{t(\nu_\mathrm{low})-t(\nu_\mathrm{high})
+=K_\mathrm{DM}\,\mathrm{DM}\left(\nu_\mathrm{low}^{-2}-\nu_\mathrm{high}^{-2}\right).}
+\end{equation}
+A convenient radio-astronomy convention is
+\begin{equation}
+\boxed{\Delta t\,[\mathrm{ms}]\simeq4.1488\,\mathrm{DM}\,[\mathrm{pc\,cm^{-3}}]
+\left[\left(\frac{\nu_\mathrm{low}}{\mathrm{GHz}}\right)^{-2}
+-\left(\frac{\nu_\mathrm{high}}{\mathrm{GHz}}\right)^{-2}\right].}
+\end{equation}
+
+This is the familiar $\nu^{-2}$ dispersive sweep seen in pulsars and fast radio bursts.
+
+\paragraph{Cosmological redshift correction.}
+For a plasma element at redshift $z$, the local wave frequency is
+$\nu_\mathrm{local}=(1+z)\nu_\mathrm{obs}$, while the observed time interval
+is stretched by a factor $(1+z)$. Together, these give a net factor
+of $1/(1+z)$.
+
+Thus, for a cosmological source,
+\begin{equation}
+\boxed{
+\Delta t_\mathrm{obs}(\nu_\mathrm{obs})
+=\frac{K_\mathrm{DM}}{\nu_\mathrm{obs}^2}
+\int_0^{z_s}\frac{n_e(z)}{1+z}\,d\ell_\mathrm{proper}.
+}
+\end{equation}
+We can therefore define an observed dispersion measure,
+\begin{equation}
+\boxed{
+\mathrm{DM}_\mathrm{obs}
+=\int_0^{z_s}\frac{n_e(z)}{1+z}\,d\ell_\mathrm{proper}.
+}
+\end{equation}
+
+
+
+

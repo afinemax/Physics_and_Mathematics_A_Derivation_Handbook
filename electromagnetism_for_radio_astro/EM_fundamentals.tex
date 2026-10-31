@@ -1,0 +1,411 @@
+
+\section{EM Wave Fundamentals}
+\label{sec:Em:em_wave_fundementals}
+
+\subsection{Plane Electromagnetic Waves}
+
+A simple solution to the electromagnetic wave equation
+is a plane wave propagating in the $+x$ direction,
+
+\begin{equation}
+\boxed{
+\mathbf{E}(x,t) =
+\operatorname{Re}\left[
+\mathbf{E}_0 e^{i(kx-\omega t)}
+\right]
+}
+\label{eq:em_plane_wave}
+\end{equation}
+
+where $\mathbf{E}_0$ is the complex electric field
+amplitude, $k$ is the angular wavenumber, and
+$\omega$ is the angular frequency.
+
+The angular wavenumber is defined as
+
+\begin{equation}
+\boxed{k = \frac{2\pi}{\lambda}}
+\label{eq:angular_wavenumber}
+\end{equation}
+
+where $\lambda$ is the wavelength. Physically, $k$
+describes how rapidly the phase changes with
+position, measured in radians per metre.
+
+Similarly, the angular frequency is
+
+\begin{equation}
+\boxed{\omega = 2\pi f = \frac{2\pi}{T}}
+\label{eq:angular_frequency}
+\end{equation}
+
+where $f$ is the frequency and $T$ is the period.
+Physically, $\omega$ describes how rapidly the
+phase changes with time, measured in radians
+per second.
+
+In three dimensions, the plane wave becomes
+
+\begin{equation}
+\mathbf{E}(\mathbf{r},t) =
+\operatorname{Re}\left[
+\mathbf{E}_0
+e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)}
+\right],
+\label{eq:em_plane_wave_3d}
+\end{equation}
+
+where $\mathbf{k}$ is the wavevector, pointing
+in the direction of propagation, with
+magnitude $|\mathbf{k}|=k$.
+
+
+\subsection{Relationship Between Electric and Magnetic Fields}
+
+
+\subsubsection{Transverse Nature of EM Waves}
+
+We can show that electromagnetic waves are transverse
+using Gauss's laws in free space,
+
+\begin{equation}
+\boxed{\nabla\cdot\mathbf{E} = 0,
+\qquad
+\nabla\cdot\mathbf{B} = 0.}
+\end{equation}
+
+Consider a plane wave of the form
+
+\begin{equation}
+\mathbf{E}(\mathbf{r},t)
+= \operatorname{Re}\left[
+\mathbf{E}_0 e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)}
+\right],
+\end{equation}
+
+where $\mathbf{k}$ is the wavevector and
+$\mathbf{E}_0$ is the constant electric field amplitude.
+
+Taking the divergence of the complex plane-wave
+representation gives
+
+\begin{equation}
+\nabla\cdot\left(
+\mathbf{E}_0 e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)}
+\right)
+=
+i(\mathbf{k}\cdot\mathbf{E}_0)
+e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)}.
+\end{equation}
+
+From Gauss's law, this must equal zero in free space.
+Since the exponential is never zero, we obtain
+
+\begin{equation}
+\boxed{\mathbf{k}\cdot\mathbf{E}_0 = 0}.
+\end{equation}
+
+Repeating the same calculation for the magnetic field,
+using $\nabla\cdot\mathbf{B}=0$, gives
+
+\begin{equation}
+\boxed{\mathbf{k}\cdot\mathbf{B}_0 = 0}.
+\end{equation}
+
+Therefore,
+
+\begin{equation}
+\boxed{
+\mathbf{k}\cdot\mathbf{E}_0 = 0,
+\qquad
+\mathbf{k}\cdot\mathbf{B}_0 = 0
+}
+\label{eq:em_transverse}
+\end{equation}
+
+Both the electric and magnetic fields are perpendicular
+to the direction of wave propagation, $\mathbf{k}$.
+This is why electromagnetic plane waves in free space
+are called \textbf{transverse waves}.
+
+
+and Faraday's law gives
+
+\begin{equation}
+\boxed{
+\mathbf{B}_0 =
+\frac{1}{\omega}
+\mathbf{k}\times\mathbf{E}_0
+}
+\label{eq:em_e_b_relation}
+\end{equation}
+
+Thus, the electric field, magnetic field,
+and propagation direction are mutually
+perpendicular.
+
+In free space, their amplitudes satisfy
+
+\begin{equation}
+\boxed{E_0 = c B_0}
+\label{eq:em_field_amplitudes}
+\end{equation}
+
+where $c$ is the speed of light.
+
+
+\subsection{Phase and Group Velocity}
+
+The phase of a plane electromagnetic wave is the argument of the complex exponetial.
+
+\begin{equation}
+\boxed{\phi = kx-\omega t}.
+\end{equation}
+
+To follow a point of constant phase, we set
+$d\phi=0$, giving
+
+\begin{equation}
+k\,dx-\omega\,dt=0.
+\end{equation}
+
+Therefore, the phase velocity is
+
+\begin{equation}
+\boxed{
+v_{\mathrm{ph}} =
+\frac{\omega}{k}
+}
+\label{eq:phase_velocity}
+\end{equation}
+
+\textbf{The phase velocity describes the speed at
+which a point of constant phase, such as a
+wave crest, propagates.
+}
+A wave packet can be constructed by
+superposing waves with slightly different
+frequencies and wavenumbers. The speed of
+the resulting envelope is called the
+\textbf{group velocity},
+
+\begin{equation}
+\boxed{
+v_{\mathrm{g}} =
+\frac{d\omega}{dk}
+}
+\label{eq:group_velocity}
+\end{equation}
+
+The group velocity describes the propagation
+of the wave packet envelope. In a transparent,
+weakly absorbing medium it is often associated
+with the transport of energy.
+
+In free space, the dispersion relation is
+
+\begin{equation}
+\boxed{\omega = ck}
+\label{eq:vacuum_dispersion_relation}
+\end{equation}
+
+and consequently,
+
+\begin{equation}
+\boxed{
+v_{\mathrm{ph}} = v_{\mathrm{g}} = c
+}
+\label{eq:vacuum_velocities}
+\end{equation}
+
+
+\subsection{Dispersion}
+
+Dispersion occurs when the relationship
+between angular frequency $\omega$ and
+wavenumber $k$ is not linear.
+
+In a dispersive medium, waves of different
+frequencies can propagate with different
+phase and group velocities.
+
+\subsubsection{Dispersion in Free Space}
+
+In classical vacuum electrodynamics,
+the dispersion relation is
+
+\begin{equation}
+\omega^2 = c^2 k^2.
+\end{equation}
+
+Because $\omega=ck$ for positive-frequency
+waves, both phase and group velocities are
+independent of frequency.
+
+Therefore, free space is a non-dispersive
+medium.
+
+
+\subsubsection{Electromagnetic Waves in Matter}
+
+Maxwell's equations remain valid in matter,
+but the electromagnetic response of the
+material must be included.
+
+For macroscopic electromagnetic fields,
+we introduce the electric displacement
+field $\mathbf{D}$ and magnetic field
+intensity $\mathbf{H}$,
+
+\begin{equation}
+\mathbf{D} = \epsilon\mathbf{E},
+\qquad
+\mathbf{B} = \mu\mathbf{H},
+\label{eq:material_constitutive}
+\end{equation}
+
+where $\epsilon$ and $\mu$ are the permittivity
+and permeability of a linear, isotropic medium.
+
+In a homogeneous, source-free, lossless,
+non-dispersive medium, Maxwell's equations
+give the wave equation
+
+\begin{equation}
+\boxed{
+\nabla^2\mathbf{E} =
+\mu\epsilon
+\pdv[2]{\mathbf{E}}{t}
+}
+\label{eq:em_wave_equation_medium}
+\end{equation}
+
+The wave propagation speed is therefore
+
+\begin{equation}
+\boxed{
+v = \frac{1}{\sqrt{\mu\epsilon}}
+}
+\label{eq:em_speed_medium}
+\end{equation}
+
+The refractive index is defined as
+
+\begin{equation}
+\boxed{
+n = \frac{c}{v}
+}
+\label{eq:refractive_index}
+\end{equation}
+
+For a frequency-dependent material response,
+the refractive index can depend on frequency,
+
+\begin{equation}
+n=n(\omega).
+\end{equation}
+
+For a transparent, isotropic medium, the
+dispersion relation is then
+
+\begin{equation}
+\boxed{
+k(\omega) = \frac{n(\omega)\omega}{c}
+}
+\label{eq:material_dispersion_relation}
+\end{equation}
+
+The phase velocity becomes
+
+\begin{equation}
+\boxed{
+v_{\mathrm{ph}} = \frac{c}{n(\omega)}
+}
+\label{eq:material_phase_velocity}
+\end{equation}
+
+while the group velocity is
+
+\begin{equation}
+\boxed{
+v_{\mathrm{g}} =
+\frac{c}{
+n(\omega)+\omega\dv{n}{\omega}
+}
+}
+\label{eq:material_group_velocity}
+\end{equation}
+
+Thus, when the refractive index depends on
+frequency, the phase and group velocities
+are generally different.
+
+
+% \subsubsection{Dispersion in a Cold Plasma}
+
+% An important example in radio astronomy is
+% electromagnetic wave propagation through
+% an unmagnetized, cold electron plasma.
+
+% The plasma frequency is
+
+% \begin{equation}
+% \boxed{
+% \omega_{\mathrm{p}} =
+% \sqrt{\frac{n_e e^2}{\epsilon_0 m_e}}
+% }
+% \label{eq:plasma_frequency}
+% \end{equation}
+
+% where $n_e$ is the electron number density,
+% $e$ is the elementary charge, and $m_e$
+% is the electron mass.
+
+% The plasma dispersion relation is
+
+% \begin{equation}
+% \boxed{
+% \omega^2 = \omega_{\mathrm{p}}^2+c^2k^2
+% }
+% \label{eq:plasma_dispersion_relation}
+% \end{equation}
+
+% The corresponding refractive index is
+
+% \begin{equation}
+% n(\omega) =
+% \sqrt{1-\frac{\omega_{\mathrm{p}}^2}{\omega^2}}.
+% \label{eq:plasma_refractive_index}
+% \end{equation}
+
+% For propagating waves with
+% $\omega>\omega_{\mathrm{p}}$, the phase
+% and group velocities are
+
+% \begin{equation}
+% v_{\mathrm{ph}} =
+% \frac{c}{
+% \sqrt{1-\omega_{\mathrm{p}}^2/\omega^2}
+% },
+% \end{equation}
+
+% \begin{equation}
+% \boxed{
+% v_{\mathrm{g}} =
+% c\sqrt{1-\frac{\omega_{\mathrm{p}}^2}{\omega^2}}
+% }
+% \label{eq:plasma_group_velocity}
+% \end{equation}
+
+% Notice that $v_{\mathrm{ph}}>c$, while
+% $v_{\mathrm{g}}<c$. A superluminal phase
+% velocity does not imply superluminal
+% information transfer.
+
+% Lower-frequency radio waves have smaller
+% group velocities and therefore arrive
+% later than higher-frequency waves.
+
+% This frequency-dependent propagation delay
+% is the origin of the dispersion observed
+% in pulsars and fast radio bursts.

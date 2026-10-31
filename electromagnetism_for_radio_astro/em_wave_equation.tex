@@ -1,0 +1,80 @@
+\section{Deriving the Electromagnetic Wave Equation}
+
+\subsection{The Wave Equation}
+The \textbf{wave equation} is a second-order partial
+differential equation (PDE) that describes the propagation
+of disturbances through space and time. Its general
+three-dimensional form is
+\begin{equation}
+\boxed{
+\nabla^2 \mathbf{R} =
+\frac{1}{v^2}\pdv[2]{\mathbf{R}}{t}
+}
+\label{eq:wave_equation}
+\end{equation}
+where $\mathbf{R}(\mathbf{r},t)$ represents a vector
+displacement field, $\mathbf{r}$ is the position vector,
+$v$ is the wave propagation speed, and $\nabla^2$
+is the Laplacian operator.
+
+In one spatial dimension, the wave equation becomes
+\begin{equation}
+\boxed{
+\pdv[2]{x}{s} =
+\frac{1}{v^2}\pdv[2]{x}{t}
+}
+\label{eq:wave_equation_1d}
+\end{equation}
+where $x(s,t)$ represents the displacement at position
+$s$ and time $t$.
+
+It relates the second space derivative of a function, to the second time derivative. The $v$ is the wave speed. For deriving the EM wave equation, we just need to get an equation in the shape of Equation~\ref{eq:wave_equation} from Maxwell's equations. 
+
+
+\subsection{Deriving The EM Wave Equation}
+
+
+To derive the EM wave equation in free space, we look at Maxwell's Equations~\ref{eq:maxwell_equations}, and the Classical Wave Equation~\ref{eq:wave_equation}.
+
+Our goal is:
+\begin{equation}
+\boxed{
+\nabla^2 \mathbf{E} =
+\frac{1}{c^2}\pdv[2]{\mathbf{E}}{t}
+}
+\label{eq:wave_equation}
+\end{equation}
+or equally in terms $\mathbf{B}$.
+
+Lets attack the LHS, we can take the curl of $\nabla \times \mathbf{E}$ (Faraday's law, Equation~\ref{eq:faraday}).Writing this we have
+
+\begin{equation}
+    \nabla\times(\nabla \times \mathbf{E}) = \nabla\times( -\pdv{\mathbf B}{t}) 
+\end{equation}
+
+This is a daunting vector triple product we recognize as the  ``BAC-CAB'', the identify is $\mathbf{A}\times(\mathbf{B}\times\mathbf{C})
+= \mathbf{B}(\mathbf{A}\cdot\mathbf{C}) - \mathbf{C}(\mathbf{A}\cdot\mathbf{B})$
+(See Vector Calculus rule~\eqref{eq:vector_calc_rules_tripple_product_vector}.
+
+In our case this becomes:
+\begin{equation}
+    \nabla(\nabla\cdot \mathbf E) - E(\nabla \cdot \nabla) = \nabla\times( -\pdv{\mathbf B}{t}) 
+\end{equation}
+
+We recognize $\nabla\cdot \mathbf E$ as Gauss's Law (Eq~\ref{eq:gauss_electric}, it must be $=0$, as $\rho=0$ in free space. We  further reconize the Laplacian operator $\nabla \cdot \nabla = \nabla^2$, we also have move it to the correct side of $\mathbf E$, we also move the partial time derivative outside of the curl. 
+
+\begin{equation}
+    -\nabla^2 \mathbf{E} = -\pdv{}{t}(\nabla \times \mathbf{B})
+\end{equation}
+The curl of $\mathbf{B}$ is one of Maxwell's laws! It is $\nabla\times\mathbf B = \mu_0\mathbf J
++ \mu_0\epsilon_0\pdv{\mathbf E}{t}$ (Ampere-Maxwell Law Eq~\ref{eq:ampere_maxwell}). Since we are in free-space $\mathbf J=0$, and we have 
+
+\begin{equation}
+    \boxed{\nabla^2 \mathbf{E} = \mu_0\epsilon_0\pdv[2]{\mathbf E}{t}}
+\end{equation}
+
+and the speed of light is given by:
+\begin{equation}
+    \boxed{c = \frac{1}{\sqrt{\mu_0\epsilon_0}}
+    \label{eq:speed_of_light}}
+\end{equation}
